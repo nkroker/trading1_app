@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  admin: one
+  name: MyString
+  symbol: MyString
+  type: 
+
+two:
+  admin: two
+  name: MyString
+  symbol: MyString
+  type: 
