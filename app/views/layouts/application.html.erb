@@ -21,6 +21,9 @@
       <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
     <% end %>
     </p>
+
+
+      <%= image_tag(url_for(current_user.image)) %>
     
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
