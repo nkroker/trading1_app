@@ -8,34 +8,56 @@
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <div class="field form-group">
-          <%= f.label :Image %>
+          <%= f.label :Image, class: "form-text" %>
           <%= f.file_field :image %>
         </div>
 
-        <br />
+
+        <div class="field form-group">
+          <%= f.label :First_name, class: "form-text" %>
+          <%= f.text_field :first_name %>
+        </div>
+
+
+        <div class="field form-group">
+          <%= f.label :Last_name, class: "form-text" %>
+          <%= f.text_field :last_name %>
+        </div>
+
+
+        <div class="field form-group">
+          <%= f.label :Contact_number, class: "form-text" %>
+          <%= f.text_field :contact_no %>
+        </div>
+
 
         <div class="field form-group">
           <%= f.label :email, class: "form-text" %>
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
         </div>
 
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-        <% end %>
-        
-        <br />
 
         <div class="field form-group">
-          <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-          <%= f.password_field :password, autocomplete: "new-password" %>
-          <% if @minimum_password_length %>
-            <br />
-            <em><%= @minimum_password_length %> characters minimum</em>
-          <% end %>
+          <%= f.label :Aadhar_number, class: "form-text" %>
+          <%= f.text_field :aadhar_no %>
+        </div>
+
+
+        <div class="field form-group">
+          <%= f.label :Pan_number, class: "form-text" %>
+          <%= f.text_field :pan_no %>
         </div>
 
         <div class="field form-group">
-          <%= f.label :password_confirmation %>
+          <%= f.label :password, class: "form-text" %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password" %>
+        </div>
+
+        <div class="field form-group">
+          <%= f.label :password_confirmation, class: "form-text" %>
           <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
         </div>
 
