@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  validates :contact_no, presence: true
+
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
