@@ -67,3 +67,5 @@ gem 'devise' # This gem is used to apply the authentication
 gem 'cancancan' # This gem is used to provide authorization
 gem 'rolify' # This gem is used to apply and manage the rolls of the users
 gem 'json' # This gem is used to parse the JSON
+gem 'bootstrap', '~> 4.0'
+gem 'jquery-rails'
