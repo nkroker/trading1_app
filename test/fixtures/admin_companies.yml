@@ -3,9 +3,11 @@
 one:
   name: MyString
   symbol: MyString
-  company_type: MyString
+  type: 
+  admin: one
 
 two:
   name: MyString
   symbol: MyString
-  company_type: MyString
+  type: 
+  admin: two

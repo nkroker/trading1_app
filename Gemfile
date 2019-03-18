@@ -62,7 +62,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Custom gems are here
-gem 'hirb'
-gem 'devise'
-gem 'cancancan'
-gem 'rolify'
+gem 'hirb' # This gem is used to see the console output in some arranged manner
+gem 'devise' # This gem is used to apply the authentication
+gem 'cancancan' # This gem is used to provide authorization
+gem 'rolify' # This gem is used to apply and manage the rolls of the users
+gem 'json' # This gem is used to parse the JSON
