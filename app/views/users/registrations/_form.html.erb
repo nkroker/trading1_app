@@ -9,7 +9,7 @@
   <div class="form-row">
     <div class="field form-group col-md-6">
       <%= f.label :First_name, class: "form-text" %>
-      <%= f.text_field :first_name, class: "form-control" %>
+      <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
     </div>
 
 
@@ -29,7 +29,7 @@
 
     <div class="field form-group col-md-6">
       <%= f.label :email, class: "form-text" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+      <%= f.email_field :email, class: "form-control" %>
     </div>
   </div>
 
@@ -58,20 +58,12 @@
     </div>
 
 
-    <div class="field form-group col-md-6">
-      <%= f.label :password_confirmation, class: "form-text" %>
-
-      <% if @minimum_password_length %>
-      <em class="small">(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
-    </div>
+    
   </div>
   
   <div class="form-row">
     <div class="actions">
-      <%= f.submit "Update", class: "btn btn-primary" %>
+      <%= f.submit "Submit", class: "btn btn-primary" %>
     </div>
   </div>
 <% end %>

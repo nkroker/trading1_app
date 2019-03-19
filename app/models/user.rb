@@ -1,12 +1,14 @@
 class User < ApplicationRecord
   validates :contact_no, presence: true
+  # validates :password,  format: { with: , message: "password must be alpha numeric" }
+  # validates :password, presence: false
 
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         authentication_keys: [:login]
+         authentication_keys: [:login], password_length: 8..128
 
   has_one_attached :image
 
