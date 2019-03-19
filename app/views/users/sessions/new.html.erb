@@ -2,16 +2,18 @@
   <div class="card" style="width: 21.5rem; height: auto;">
     <div class="card-body">
       <h2 class="card-title">Log in</h2>
+      <hr>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
         <div class="field form-group">
           <%= f.label :login %><br />
-          <%= f.text_field :login %>
+          <%= f.text_field :login, class: "form-control" %>
         </div>
 
         <div class="field form-group">
           <%= f.label :password %><br />
-          <%= f.password_field :password, autocomplete: "current-password" %>
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
         </div>
 
         <% if devise_mapping.rememberable? %>
@@ -25,6 +27,7 @@
           <%= f.submit "Log in", class: "btn btn-primary" %>
         </div>
       <% end %>
+      <hr>
 
       <%= render "users/shared/links" %>
       

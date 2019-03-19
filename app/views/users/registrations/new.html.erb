@@ -1,74 +1,23 @@
 <div class="row justify-content-center">
-  <div class="card" style="width: 21.5rem; height: auto;">
+  <div class="card shadow-lg" style="width:auto; height: auto;">
     <div class="card-body">
-      <h2 class="card-title">Sign Up</h2>
 
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="form-row">
+          <h2 class="card-title">Create Profile</h2>
 
-        <div class="field form-group">
-          <%= f.label :Image, class: "form-text" %>
-          <%= f.file_field :image %>
+          <span ></span>
+
+            <div class="form-group ml-auto">
+               <%= image_tag("/assets/default_user_pic.png", class: "profilepic", onclick:"trigger()") %>
+            </div>       
         </div>
 
+        <%= render "users/registrations/form"%>
 
-        <div class="field form-group">
-          <%= f.label :First_name, class: "form-text" %>
-          <%= f.text_field :first_name %>
-        </div>
+      <hr>
 
+      <%= link_to "Sign In",new_session_path(resource_name) %>
 
-        <div class="field form-group">
-          <%= f.label :Last_name, class: "form-text" %>
-          <%= f.text_field :last_name %>
-        </div>
-
-
-        <div class="field form-group">
-          <%= f.label :Contact_number, class: "form-text" %>
-          <%= f.text_field :contact_no %>
-        </div>
-
-
-        <div class="field form-group">
-          <%= f.label :email, class: "form-text" %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
-
-
-        <div class="field form-group">
-          <%= f.label :Aadhar_number, class: "form-text" %>
-          <%= f.text_field :aadhar_no %>
-        </div>
-
-
-        <div class="field form-group">
-          <%= f.label :Pan_number, class: "form-text" %>
-          <%= f.text_field :pan_no %>
-        </div>
-
-        <div class="field form-group">
-          <%= f.label :password, class: "form-text" %>
-          <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-          <% end %><br />
-          <%= f.password_field :password, autocomplete: "new-password" %>
-        </div>
-
-        <div class="field form-group">
-          <%= f.label :password_confirmation, class: "form-text" %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-        </div>
-
-        <div class="actions ">
-          <%= f.submit "Sign up", class: "btn btn-primary" %>
-        </div>
-
-        <br>
-
-        <%= render "users/shared/links" %>
-      <% end %>
-      
     </div>
   </div>
 </div>

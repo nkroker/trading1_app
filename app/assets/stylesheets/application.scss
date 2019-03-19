@@ -7,3 +7,52 @@
   height: 55px;
   border-radius: 50%;
 }
+
+
+input[type="text"],
+select.form-control
+{
+	border-radius: 50px;
+}
+
+
+
+input[type="password"],
+select.form-control
+{
+	border-radius: 50px;
+}
+
+input[type="submit"],
+select.form-control
+{
+	border-radius: 50px;
+	width: 100%;
+}
+
+
+
+input[type="email"],
+select.form-control
+{
+	border-radius: 50px;
+}
+
+.actions
+{
+	width:100%;
+}
+
+.profilepic
+{
+	vertical-align: middle;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+}
+
+.card-title
+{
+	vertical-align: middle;
+	padding-top: 7%;
+}
