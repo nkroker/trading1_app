@@ -7,6 +7,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          authentication_keys: [:login]
+
   has_one_attached :image
 
 
@@ -26,6 +27,13 @@ class User < ApplicationRecord
     elsif conditions.has_key?(:contact_no) || conditions.has_key?(:email)
       where(conditions.to_h).first
     end
+  end
+
+
+
+  def user_image
+    # binding.pry
+    image.attachment.present? ? image : "default_user_pic.png"
   end
 
 end

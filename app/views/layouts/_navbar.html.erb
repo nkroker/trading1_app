@@ -1,7 +1,6 @@
 <!-- Image and text -->
 <nav class="navbar navbar-light bg-dark custom-style ">
 
-
   <%= link_to "Trading1", welcome_index_path, class: "navbar-brand text-white" %>
 
   <span>
@@ -10,7 +9,11 @@
       Logged in as:  <strong class="badge badge-pill badge-dark"><%= (current_user.first_name + " " + current_user.last_name) %></strong>
       <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link text-white' %> |
       <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link text-white'  %>
-      <%= image_tag(current_user.image, class: "image") %>
+      
+
+
+      <%= image_tag(current_user.user_image, class: "image") %>
+
     <% end %>
     </p>
   </span>
