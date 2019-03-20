@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   validates :contact_no, presence: true
-  # validates :password,  format: { with: , message: "password must be alpha numeric" }
+  validates :contact_no, length: { is: 10 }
+  validates :password,  format: { with: /[A-Za-z0-9]/, message: "Password must be in alpha numeric format" }
   # validates :password, presence: false
 
   rolify
@@ -8,7 +9,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         authentication_keys: [:login], password_length: 8..128
+         :authentication_keys => [:login]
 
   has_one_attached :image
 
@@ -22,12 +23,16 @@ class User < ApplicationRecord
   end
 
 
-  def self.find_for_database_authentication(warden_conditions)
+  def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
-      where(conditions.to_h).where(["contact_no = :value OR lower(email) = :value", { :value => login.downcase }]).first
-    elsif conditions.has_key?(:contact_no) || conditions.has_key?(:email)
-      where(conditions.to_h).first
+      where(conditions).where(["contact_no = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    else
+      if conditions[:contact_no].nil?
+        where(conditions).first
+      else
+        where(contact_no: conditions[:contact_no]).first
+      end
     end
   end
 
