@@ -1,5 +1,8 @@
 class User < ApplicationRecord
+  has_many :investments
+  # has_one :role
   validates :contact_no, presence: true
+  validates :contact_no, uniqueness: true
   validates :contact_no, length: { is: 10 }
   validates :password,  format: { with: /[A-Za-z0-9]/, message: "Password must be in alpha numeric format" }
   # validates :password, presence: false
@@ -13,15 +16,17 @@ class User < ApplicationRecord
 
   has_one_attached :image
 
+  # after_create :assign_default_role
 
-
+  # def assign_default_role
+  #   add_role(:customer)
+  # end
 
   attr_writer :login
   
   def login
   	@login || self.contact_no || self.email
   end
-
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
@@ -36,10 +41,7 @@ class User < ApplicationRecord
     end
   end
 
-
-
   def user_image
-    # binding.pry
     image.attachment.present? ? image : "default_user_pic.png"
   end
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :investments
 	devise_for :users, :controllers => {:registrations => "registrations"}
   get 'dashboard/index'
   # devise_for :users, controllers: { registrations: 'registrations' }
@@ -8,5 +9,6 @@ Rails.application.routes.draw do
   # end
   root to: 'dashboard#index'
 
+  get 'investment/new'
 
 end

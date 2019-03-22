@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_18_070518) do
+ActiveRecord::Schema.define(version: 2019_03_22_132604) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_03_18_070518) do
   create_table "admin_companies", force: :cascade do |t|
     t.string "name"
     t.string "symbol"
-    t.string "type"
+    t.string "company_type"
     t.integer "admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -66,12 +66,12 @@ ActiveRecord::Schema.define(version: 2019_03_18_070518) do
   end
 
   create_table "investments", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "customer_id"
     t.float "amount"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_investments_on_user_id"
+    t.index ["customer_id"], name: "index_investments_on_customer_id"
   end
 
   create_table "roles", force: :cascade do |t|

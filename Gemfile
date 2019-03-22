@@ -70,3 +70,4 @@ gem 'json' # This gem is used to parse the JSON
 gem 'bootstrap', '~> 4.0'
 gem 'jquery-rails'
 gem 'pry'
+gem 'erd'

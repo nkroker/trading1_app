@@ -1,3 +1,5 @@
 class Investment < ApplicationRecord
-  belongs_to :coustomer, class_name: "User"
+  belongs_to :customer, :class_name => "User"
+  
+  
 end

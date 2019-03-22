@@ -1,3 +1,3 @@
 class AdminCompany < ApplicationRecord
-  belongs_to :admin
+  belongs_to :admin, class_name: "User"
 end
