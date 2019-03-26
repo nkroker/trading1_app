@@ -11,4 +11,6 @@ Rails.application.routes.draw do
 
   get 'investment/new'
 
+  resources :charges
+
 end

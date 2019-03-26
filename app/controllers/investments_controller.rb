@@ -7,7 +7,11 @@ class InvestmentsController < ApplicationController
   end
 
   def new
-    @investment = Investment.new
+    if current_user.stripe_customer?
+      @investment = Investment.new
+    else
+      redirect_to(new_charge_path)
+    end
     # byebug
   end
 
@@ -19,8 +23,7 @@ class InvestmentsController < ApplicationController
 
     respond_to do |format|
       if @investment.save
-        format.html { redirect_to @investment, notice: 'Investment was successfully created.' }
-        format.json { render "dashboard/index", status: :created, location: @investment }
+        format.html { redirect_to root_path }
       else
         format.html { render :new }
         format.json { render json: @investment.errors, status: :unprocessable_entity }
