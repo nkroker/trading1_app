@@ -45,4 +45,8 @@ class User < ApplicationRecord
     image.attachment.present? ? image : "default_user_pic.png"
   end
 
+  def fullname
+    first_name + " " + last_name
+  end
+
 end

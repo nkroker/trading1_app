@@ -1,3 +1,8 @@
+<div class="row m-2">
+  <h2 class="float-left">Investments</h2>
+  <%= link_to 'New Investment', new_investment_path, class: "text-white btn btn-primary ml-auto"%>
+</div>
+
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -8,9 +13,11 @@
     </tr>
   </thead>
   <tbody>
+      <% count = 0 %>
       <% @investments.each do |investment| %>
+      <% count +=1 %>
         <tr>
-          <th scope="row"><%= investment.id %></th>
+          <th scope="row"><%= count %></th>
           <td><%= investment.created_at %></td>
           <td><%= investment.amount %></td>
           <td><%= investment.description %></td>
