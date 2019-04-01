@@ -49,4 +49,8 @@ class User < ApplicationRecord
     first_name + " " + last_name
   end
 
+  def set_stripe_customer_id stripe_customer_id
+    stripe_customer = stripe_customer_id
+  end
+  
 end

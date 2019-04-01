@@ -60,4 +60,11 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.stripe.debug_js = false # use stripe.js
+
+  # # config.stripe.secret_key = ENV['SECRET_KEY']
+  # config.stripe.publishable_key =  "pk_test_vxqMTEKZXLRroPCZy79EL7fF00pGCxxEjK"
+  # config.stripe.secret_key = "sk_test_hMWYftqrT34GjDz1Jm5B8cbt004O9VxlOA"
+
 end

@@ -1,7 +1,10 @@
 class ChargesController < ApplicationController
-  # skip_before_action :verify_authenticity_token  
-  protect_from_forgery
-  Stripe.api_key = "sk_test_hMWYftqrT34GjDz1Jm5B8cbt004O9VxlOA"
+  before_action :authenticate_user!
+  # include Devise::Controllers::Helpers
+  skip_before_action :verify_authenticity_token  
+  #protect_from_forgery
+  # Stripe.api_key = "sk_test_hMWYftqrT34GjDz1Jm5B8cbt004O9VxlOA"
+  # STRIPE_SECRET_KEY=sk_test_hMWYftqrT34GjDz1Jm5B8cbt004O9VxlOA
 
   def new
   end
@@ -10,13 +13,10 @@ class ChargesController < ApplicationController
     token = params[:stripeToken]
     customer = Stripe::Customer.create({
         source: token,
-        email: current_user.email # Here we are not getting the current user
+        email: current_user.email
     })
 
-    flash[:notice] = customer
-
-    current_user.stripe_customer = customer.id
-    current_user.save
+    current_user.update_attribute(:stripe_customer, customer.id)
     redirect_to(root_path)
   end
 end
