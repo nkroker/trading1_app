@@ -8,10 +8,9 @@ class ChargesController < ApplicationController
 
   def create
     token = params[:stripeToken]
-
     customer = Stripe::Customer.create({
         source: token,
-        email: current_user.email,
+        email: current_user.email # Here we are not getting the current user
     })
 
     flash[:notice] = customer
