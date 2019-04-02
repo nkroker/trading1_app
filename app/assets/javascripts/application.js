@@ -15,6 +15,8 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
-//= require stripe
+//= require charges
+//= require modification
 //= require turbolinks
-//= require_tree .
+
+

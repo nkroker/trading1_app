@@ -11,6 +11,6 @@ function readURL(input) {
 }
 
 
-function trigger(){
+$(document).on('click', '.profilepic', function(){
 	$(".file-uploader").click();
-}
+})

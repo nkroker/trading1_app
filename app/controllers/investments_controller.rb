@@ -19,10 +19,18 @@ class InvestmentsController < ApplicationController
     # current_user.stripe_customer_id.blank?
     #Stripe::Charge.create(amount: params[:amount])
     @investment = Investment.new(investment_params)
+
+    charge = Stripe::Charge.create({
+        customer: current_user.stripe_customer,
+        amount: (@investment.amount*100).to_i,
+        description: @investment.description,
+        currency: 'usd',
+      })
     @investment.customer_id = current_user.id
 
     respond_to do |format|
       if @investment.save
+
         format.html { redirect_to root_path }
       else
         format.html { render :new }

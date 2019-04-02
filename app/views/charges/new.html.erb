@@ -6,7 +6,11 @@
         <div class="form-row">
           <h2 class="card-title">Add Card Details</h2>
 
+            <%= current_user.errors.full_messages.first if current_user.errors.any? %>
+
             <div class="card-body">
+
+
               <form action="/charges" method="post" id="stripe-form">
                 <div class="formset">
                   <label>Card Number</label>
@@ -26,6 +30,8 @@
                 </div>
                 <button type="submit" class="submit">Submit Payment</button>
               </form>
+
+                
             </div>
           </div>
     </div>

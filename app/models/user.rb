@@ -2,11 +2,11 @@ class User < ApplicationRecord
   has_many :investments
   # has_one :role
   validates :contact_no, presence: true
+  validates :password,  format: { with: /\A[a-zA-Z0-9]*\z/, message: "Password must be in alpha numeric format" }, on: :create
+  validates :password,  format: { with: /\A[a-zA-Z0-9]*\z/, message: "Password must be in alpha numeric format" }, on: :update
   validates :contact_no, uniqueness: true
   validates :contact_no, length: { is: 10 }
-  validates :password,  format: { with: /[A-Za-z0-9]/, message: "Password must be in alpha numeric format" }
   # validates :password, presence: false
-
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -52,5 +52,19 @@ class User < ApplicationRecord
   def set_stripe_customer_id stripe_customer_id
     stripe_customer = stripe_customer_id
   end
-  
+
+  def create_stripe_customer customer_token
+    begin
+      customer = Stripe::Customer.create({
+          source: customer_token,
+          email: email
+      })
+      self.stripe_customer = customer.id
+      self.save
+    rescue
+      errors.add(:base, "something went wrong")
+      false
+    end
+  end
+
 end
