@@ -24,7 +24,7 @@ class InvestmentsController < ApplicationController
         customer: current_user.stripe_customer,
         amount: (@investment.amount*100).to_i,
         description: @investment.description,
-        currency: 'usd',
+        currency: 'inr',
       })
     @investment.customer_id = current_user.id
 

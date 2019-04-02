@@ -25,19 +25,26 @@
 
           <div class="field form-group col-md-6">
             <%= form.label :Amount, class: "form-text" %>
-            <%= form.text_field :amount, class: "form-control" %>
+            <%= form.text_field :amount, class: "form-control", required: true %>
           </div>
           <br>
 
         <div class="field form-group col-md-6">
           <%= form.label :description, class: "form-text" %>
-          <%= form.text_field :description, class: "form-control" %>
+          <%= form.text_field :description, class: "form-control", required: true %>
         </div>
 
         <div class="actions">
-          <%= form.submit %>
+          <%= form.submit "Submit", class: "btn btn-primary" %>
         </div>
-      </div>  
+      </div>
+
+      <br>
+      <hr>
+
+
+
+
       <% end %>
       
     </div>
