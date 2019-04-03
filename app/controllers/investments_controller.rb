@@ -26,6 +26,7 @@ class InvestmentsController < ApplicationController
         description: @investment.description,
         currency: 'inr',
       })
+    @investment.charge_token = charge.id
     @investment.customer_id = current_user.id
 
     respond_to do |format|

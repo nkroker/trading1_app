@@ -2,9 +2,8 @@ class User < ApplicationRecord
   has_many :investments
   # has_one :role
   validates :contact_no,{ presence: true, uniqueness: true, length: { is: 10 } }
-  validates :password,{ format: { with: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*])/, message: "Password must contain at least 1 digit, 1 special char, 1 Capital Letter, 1 Small Letter and minimum 8 character"}, presence: true, on: :create }
-  validates :password,{ format: { with: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*])/, message: "Password must contain at least 1 digit, 1 special char, 1 Capital Letter, 1 Small Letter and minimum 8 character"}, presence: true, on: :update, if: :password_changed?}
-  # validates :password, presence: true, on: :create
+  validates :password,{ format: { with: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*])/, message: "Password must contain at least 1 digit, 1 special char, 1 Capital Letter, 1 Small Letter and minimum 8 character"}, presence: true, allow_nil: true}
+  #validates :password,{ format: { with: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*])/, message: "Password must contain at least 1 digit, 1 special char, 1 Capital Letter, 1 Small Letter and minimum 8 character"}, presence: true, on: :update, if: :password_changed?}
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -66,7 +65,7 @@ class User < ApplicationRecord
   end
 
   def password_changed?
-      !password.blank?
+    !password.blank?
   end
 
 end
