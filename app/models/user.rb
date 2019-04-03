@@ -1,23 +1,18 @@
 class User < ApplicationRecord
-  has_many :investments
-  # has_one :role
-  validates :contact_no,{ presence: true, uniqueness: true, length: { is: 10 } }
-  validates :password,{ format: { with: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*])/, message: "Password must contain at least 1 digit, 1 special char, 1 Capital Letter, 1 Small Letter and minimum 8 character"}, presence: true, allow_nil: true}
-  #validates :password,{ format: { with: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*])/, message: "Password must contain at least 1 digit, 1 special char, 1 Capital Letter, 1 Small Letter and minimum 8 character"}, presence: true, on: :update, if: :password_changed?}
-  rolify
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :authentication_keys => [:login]
+  
+  rolify
+  resourcify
 
+  has_many :investments
   has_one_attached :image
 
-  # after_create :assign_default_role
-
-  # def assign_default_role
-  #   add_role(:customer)
-  # end
+  validates :contact_no,{ presence: true, uniqueness: true, length: { is: 10 } }
+  validates :password,{ format: { with: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*])/, message: "Password must contain at least 1 digit, 1 special char, 1 Capital Letter, 1 Small Letter and minimum 8 character"}, presence: true, allow_nil: true}
+  validates_presence_of :first_name, :last_name
 
   attr_writer :login
   
@@ -46,10 +41,6 @@ class User < ApplicationRecord
     first_name + " " + last_name
   end
 
-  def set_stripe_customer_id stripe_customer_id
-    stripe_customer = stripe_customer_id
-  end
-
   def create_stripe_customer customer_token
     begin
       customer = Stripe::Customer.create({
@@ -63,9 +54,4 @@ class User < ApplicationRecord
       false
     end
   end
-
-  def password_changed?
-    !password.blank?
-  end
-
 end

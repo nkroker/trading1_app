@@ -1,9 +1,8 @@
 class InvestmentsController < ApplicationController
   before_action :authenticate_user!
-  # before_action :set_investment, only: [:show, :edit, :update, :destroy]
-
+  
   def index
-    @investmentents = Investment.all
+    @investments = Investment.all
   end
 
   def new
@@ -12,12 +11,9 @@ class InvestmentsController < ApplicationController
     else
       redirect_to(new_charge_path)
     end
-    # byebug
   end
 
   def create
-    # current_user.stripe_customer_id.blank?
-    #Stripe::Charge.create(amount: params[:amount])
     @investment = Investment.new(investment_params)
 
     charge = Stripe::Charge.create({

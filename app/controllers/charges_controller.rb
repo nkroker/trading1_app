@@ -6,7 +6,6 @@ class ChargesController < ApplicationController
   end
 
   def create
-    Stripe.api_key = ENV['SECRET_KEY']
     if current_user.create_stripe_customer(params[:stripeToken])
       redirect_to(root_path)
     else
