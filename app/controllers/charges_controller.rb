@@ -9,7 +9,7 @@ class ChargesController < ApplicationController
     if current_user.create_stripe_customer(params[:stripeToken])
       redirect_to(root_path)
     else
-      flash[:alert] = current_user.errors .messages
+      flash[:alert] = current_user.errors.messages
     end
   end
 end

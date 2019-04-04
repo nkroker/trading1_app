@@ -16,9 +16,7 @@ class InvestmentsController < ApplicationController
   def create
     @investment = Investment.new(investment_params)
     @investment = @investment.create_charge(@investment, current_user)
-    if !@investment.problems.blank?
-      flash[:error] = @investment.problems  # Here we are fetching information from virtual attribute
-    end
+    flash[:error] = @investment.problems if !@investment.problems.blank?  # Here we are fetching information from virtual attribute in this Guard condition
 
     respond_to do |format|
       @investment.save ? format.html { redirect_to root_path } : format.html { render :new }
