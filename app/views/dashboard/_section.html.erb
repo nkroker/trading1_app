@@ -13,15 +13,15 @@
     </tr>
   </thead>
   <tbody>
-      <% count = 0 %>
-      <% @investments.each do |investment| %>
-      <% count +=1 %>
-        <tr>
-          <th scope="row"><%= count %></th>
-          <td><%= investment.created_at %></td>
-          <td><%= investment.amount %></td>
-          <td><%= investment.description %></td>
-        </tr>
-      <% end %>
+    <% count = 0 %>
+    <% @investments.each do |investment| %>
+    <% count +=1 %>
+      <tr>
+        <th scope="row"><%= count %></th>
+        <td><%= ((investment.created_at).to_s)[0..9] %></td>
+        <td><%= investment.amount %></td>
+        <td><%= investment.description %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>

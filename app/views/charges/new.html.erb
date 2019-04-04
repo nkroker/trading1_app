@@ -1,3 +1,4 @@
+<%= render '/layouts/flash_messages' %>
 <div class="row justify-content-center">
   <div class="card shadow-lg" style="width:auto; height: auto;">
     <div class="card-body">
@@ -6,34 +7,31 @@
         <div class="form-row">
           <h2 class="card-title">Add Card Details</h2>
 
-            <%= current_user.errors.full_messages.first if current_user.errors.any? %>
+          <%= current_user.errors.full_messages.first if current_user.errors.any? %>
 
-            <div class="card-body">
+          <div class="card-body">
+            <form action="/charges" method="post" id="stripe-form">
+              <div class="formset">
+                <label>Card Number</label>
+                <input type="text" size="20" autocomplete="off" class="credit-number" />
+              </div>
 
+              <div class="formset">
+                <label>Security Code/CVC</label>
+                <input type="text" size="4" autocomplete="off" class="credit-scurity" />
+              </div>
 
-              <form action="/charges" method="post" id="stripe-form">
-                <div class="formset">
-                  <label>Card Number</label>
-                  <input type="text" size="20" autocomplete="off" class="credit-number" />
-                </div>
-
-                <div class="formset">
-                  <label>Security Code/CVC</label>
-                  <input type="text" size="4" autocomplete="off" class="credit-scurity" />
-                </div>
-
-                <div class="formset">
-                  <label>Expiration (MM/YYYY)</label>
-                  <input type="text" size="2" class="card-expiry-month"/>
-                  <span> / </span>
-                  <input type="text" size="4" class="card-expiry-year"/>
-                </div>
-                <button type="submit" class="submit">Submit Payment</button>
-              </form>
-
-                
-            </div>
+              <div class="formset">
+                <label>Expiration (MM/YYYY)</label>
+                <input type="text" size="2" class="card-expiry-month"/>
+                <span> / </span>
+                <input type="text" size="4" class="card-expiry-year"/>
+              </div>
+              <button type="submit" class="submit">Submit Payment</button>
+            </form>
           </div>
+          
+        </div>
     </div>
   </div>
 </div>
