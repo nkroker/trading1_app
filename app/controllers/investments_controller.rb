@@ -15,31 +15,20 @@ class InvestmentsController < ApplicationController
 
   def create
     @investment = Investment.new(investment_params)
-
-    charge = Stripe::Charge.create({
-        customer: current_user.stripe_customer,
-        amount: (@investment.amount*100).to_i,
-        description: @investment.description,
-        currency: 'inr',
-      })
-    @investment.charge_token = charge.id
-    @investment.customer_id = current_user.id
+    @investment = @investment.create_charge(@investment, current_user)
+    if !@investment.problems.blank?
+      flash[:error] = @investment.problems  # Here we are fetching information from virtual attribute
+    end
 
     respond_to do |format|
-      if @investment.save
-
-        format.html { redirect_to root_path }
-      else
-        format.html { render :new }
-        format.json { render json: @investment.errors, status: :unprocessable_entity }
-      end
+      @investment.save ? format.html { redirect_to root_path } : format.html { render :new }
     end
   end
 
   private
-    def set_investment
-      @investment = Investment.find(params[:id])
-    end
+    # def set_investment
+    #   @investment = Investment.find(params[:id])
+    # end
 
     def investment_params
       params.require(:investment).permit(:amount, :description)

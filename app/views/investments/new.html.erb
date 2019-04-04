@@ -1,18 +1,18 @@
+<%= render '/layouts/flash_messages' %>
 <div class="row justify-content-center investment-form">
   <div class="card" style="width: 21.5rem; height: auto;">
     <div class="card-body">
       <h2 class="card-title">Investment</h2>
       <hr>
-
       <%= form_for @investment do |form| %>
         <% if @investment.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@investment.errors.count, "error") %> prohibited this investment from being saved:</h2>
-
             <ul>
             <% @investment.errors.full_messages.each do |message| %>
               <li><%= message %></li>
             <% end %>
+            <hr>
             </ul>
           </div>
         <% end %>
