@@ -18,5 +18,3 @@
 //= require charges
 //= require modification
 //= require turbolinks
-
-

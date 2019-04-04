@@ -14,3 +14,10 @@ function readURL(input) {
 $(document).on('click', '.profilepic', function(){
 	$(".file-uploader").click();
 })
+
+
+
+function playsound(){
+	var audio = new Audio('/assets/cashreg.wav');
+	audio.play();
+}

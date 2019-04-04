@@ -15,11 +15,14 @@ class InvestmentsController < ApplicationController
 
   def create
     @investment = Investment.new(investment_params)
-    @investment = @investment.create_charge(@investment, current_user)
-    flash[:error] = @investment.problems if !@investment.problems.blank?  # Here we are fetching information from virtual attribute in this Guard condition
-
-    respond_to do |format|
-      @investment.save ? format.html { redirect_to root_path } : format.html { render :new }
+    charge = @investment.create_charge(current_user.stripe_customer)
+    if charge.is_a?(String)
+      render :new
+    else
+      @investment.charge_token = charge.id if charge.present?
+      @investment.customer_id = current_user.id
+      @investment.save
+      redirect_to root_path
     end
   end
 
@@ -32,3 +35,4 @@ class InvestmentsController < ApplicationController
       params.require(:investment).permit(:amount, :description)
     end
 end
+

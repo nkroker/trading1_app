@@ -10,21 +10,18 @@ class Investment < ApplicationRecord
 
 
   # method for creating the charge
-  def create_charge (investment, current_user)
+  def create_charge(stripe_customer)
     begin
-      charge = Stripe::Charge.create({
-          customer: current_user.stripe_customer,
-          amount: (investment.amount*100).to_i,
-          description: investment.description,
+      Stripe::Charge.create({
+          customer: stripe_customer,
+          amount: (amount*100).to_i,
+          description: description,
           currency: 'inr',
-        })
+      })
     rescue Stripe::InvalidRequestError => e
-      self.problems = e.message  # Here we are setting the data into virtual attribute
+      self.errors.add(:base,e.message)
+      e.message
     end
-
-    investment.charge_token = charge.id if charge.present?
-    investment.customer_id = current_user.id
-    investment
   end
 
 end
