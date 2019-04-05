@@ -10,6 +10,7 @@ class InvestmentsController < ApplicationController
       @investment = Investment.new
     else
       redirect_to(new_charge_path)
+      session[:return_to] ||= request.referer
     end
   end
 

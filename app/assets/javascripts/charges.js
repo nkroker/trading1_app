@@ -1,3 +1,16 @@
+// Create an instance of the card Element.
+var target = document.getElementById("testname");
+
+// Handle real-time validation errors from the card Element.
+target.addEventListener('change', function(event) {
+  var displayError = document.getElementById('card-errors');
+  if (event.error) {
+    displayError.innerHTML = event.error.message;
+  } else {
+    displayError.textContent = '';
+  }
+});
+
 $(document).ready(function() {
     Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
 
@@ -12,7 +25,6 @@ $(document).ready(function() {
       }, stripeResponseHandler);
 
       alert("ping ping");
-
       // prevent the form from submitting with the default action
       return false;
   });
