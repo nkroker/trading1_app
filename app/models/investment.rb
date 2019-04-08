@@ -12,7 +12,7 @@ class Investment < ApplicationRecord
   # method for creating the charge
   def create_charge(stripe_customer)
     begin
-      Stripe::Charge.create({
+      str = Stripe::Charge.create({
           customer: stripe_customer,
           amount: (amount*100).to_i,
           description: description,

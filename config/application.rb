@@ -15,5 +15,7 @@ module Trading1
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+    config.stripe.publishable_key = 'pk_test_vxqMTEKZXLRroPCZy79EL7fF00pGCxxEjK'
+    config.stripe.secret_key = 'sk_test_hMWYftqrT34GjDz1Jm5B8cbt004O9VxlOA'
   end
 end
