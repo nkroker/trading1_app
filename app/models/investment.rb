@@ -3,12 +3,9 @@ class Investment < ApplicationRecord
 
   attr_accessor :problems # This attr_accessor is used for creating a virtual attribute
 
-
-  belongs_to :customer, :class_name => "User"
-
-
   validates_presence_of :amount, :description, :charge_token
 
+  belongs_to :customer, :class_name => "User"
 
   # method for creating the charge
   def create_charge(stripe_customer)
