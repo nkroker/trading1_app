@@ -3,7 +3,7 @@ class Ability
 
   def initialize(user)
     if user.has_role? :admin
-      can :manage, :all
+      can :read, :all
       cannot :create, :investment_record
     elsif user.has_role? :customer
       can :read, :all
