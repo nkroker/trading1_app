@@ -1,1 +1,8 @@
-<%= stripe_elements_tag submit_path: charges_path %>
+<div class="row justify-content-center">
+  <div class="card" style="width: 21.5rem; height: auto;">
+    <div class="card-body">
+      <h2 class="card-title">Add Payment Method</h2>
+      <%= stripe_elements_tag submit_path: charges_path %>    
+    </div>
+  </div>
+</div>

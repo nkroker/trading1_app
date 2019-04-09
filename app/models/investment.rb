@@ -1,4 +1,5 @@
 class Investment < ApplicationRecord
+  resourcify
 
   attr_accessor :problems # This attr_accessor is used for creating a virtual attribute
 
