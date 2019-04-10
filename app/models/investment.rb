@@ -1,11 +1,10 @@
 class Investment < ApplicationRecord
-  resourcify
-
   attr_accessor :problems # This attr_accessor is used for creating a virtual attribute
 
   validates_presence_of :amount, :description, :charge_token
 
   belongs_to :customer, :class_name => "User"
+  resourcify
 
   # method for creating the charge
   def create_charge(stripe_customer)

@@ -1,0 +1,28 @@
+<div class="row m-2">
+  <h2 class="float-left">User's Investments</h2>
+</div>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Customer id</th>
+      <th scope="col">Customer name</th>
+      <th scope="col">Date</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Description</th>
+      <th scope="col">Next</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @investments.each do |investment| %>
+      <tr>
+        <th scope="row"><%= investment.customer_id %></th>
+        <th><%= User.where(id: investment.customer_id).first.email %></th>
+        <td><%= ((investment.created_at).to_s)[0..9] %></td>
+        <td><%= investment.amount %></td>
+        <td><%= investment.description %></td>
+        <td class="nextButton"><%= image_tag("nextButton.png", alt: "Next", height: 20, width: 20) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
