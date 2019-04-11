@@ -19,6 +19,10 @@ class User < ApplicationRecord
   	@login || self.contact_no || self.email
   end
 
+  def users
+    User.where(invited_by: self.id)
+  end
+
   # This method is for making Devise where to look for login
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
