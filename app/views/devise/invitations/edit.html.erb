@@ -1,0 +1,19 @@
+<%# = render '/layouts/navbar' %>
+<div class="row justify-content-center">
+  <div class="card shadow-lg" style="width:auto; height: auto;">
+    <div class="card-body">
+
+        <div class="form-row">
+          <h2 class="card-title">Create Profile</h2>
+
+          
+
+            <div class="form-group ml-auto">
+               <%= image_tag("/assets/default_user_pic.png", class: "profilepic") %>
+            </div>       
+        </div>
+
+        <%= render "devise/invitations/invitation_form"%>
+    </div>
+  </div>
+</div>

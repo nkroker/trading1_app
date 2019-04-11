@@ -1,0 +1,61 @@
+<h2><%= t "devise.invitations.edit.header" %></h2>
+
+<%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= f.hidden_field :invitation_token, readonly: true %>
+
+  <% if f.object.class.require_password_on_accepting %>
+
+
+    <%= f.file_field :image, style: "display:none;", class: "file-uploader", onchange: "readURL(this)" %>
+
+      <hr>
+
+      <div class="form-row">
+        <div class="field form-group col-md-6">
+          <%= f.label :First_name, class: "form-text" %>
+          <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
+        </div>
+
+
+        <div class="field form-group col-md-6">
+          <%= f.label :Last_name, class: "form-text" %>
+          <%= f.text_field :last_name, class: "form-control" %>
+        </div>
+      </div>
+
+
+      <div class="form-row">
+        <div class="field form-group col-md-6">
+          <%= f.label :Pan_number, class: "form-text" %>
+          <%= f.text_field :pan_no, class: "form-control", required: true %>
+        </div>
+
+
+        <div class="field form-group col-md-6">
+          <%= f.label :Aadhar_number, class: "form-text" %>
+          <%= f.text_field :aadhar_no, class: "form-control", required: true %>
+        </div>
+      </div>
+
+
+      <div class="form-row">          
+        <div class="field form-group col-md-6">
+          <%= f.label :Contact_number, class: "form-text" %>
+          <%= f.text_field :contact_no, class: "form-control" %>
+        </div>
+
+        <div class="field form-group col-md-6">
+          <%= f.label :password, class: "form-text" %>
+          <%= f.password_field :password, class: "form-control" %>
+        </div>
+      </div>
+  <% end %>
+
+  <div class="form-row">
+    <div class="actions">
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+    </div>
+  </div>
+
+<% end %>

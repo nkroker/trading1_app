@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   get 'admin/index'
-	devise_for :users, :controllers => {:registrations => "registrations"}
+	devise_for :users, :controllers => {:registrations => "registrations", :invitations => "invitations" }
 
   resources :dashboard, only: :index
 

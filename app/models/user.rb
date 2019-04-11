@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   rolify
   
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :authentication_keys => [:login]
+         :invitable, :authentication_keys => [:login]
   
   has_many :investments 
   has_one_attached :image
@@ -31,6 +31,9 @@ class User < ApplicationRecord
 
   def user_image
     image.attachment.present? ? image : "default_user_pic.png"
+  end
+
+  def after_password_reset 
   end
 
   def fullname

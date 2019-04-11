@@ -6,7 +6,7 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col">Customer id</th>
-      <th scope="col">Customer name</th>
+      <th scope="col">Customer email</th>
       <th scope="col">Date</th>
       <th scope="col">Amount</th>
       <th scope="col">Description</th>
@@ -15,7 +15,7 @@
   </thead>
   <tbody>
     <% @investments.each do |investment| %>
-      <tr>
+      <tr id=<%= investment.id %>  >
         <th scope="row"><%= investment.customer_id %></th>
         <th><%= User.where(id: investment.customer_id).first.email %></th>
         <td><%= ((investment.created_at).to_s)[0..9] %></td>
