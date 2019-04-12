@@ -12,6 +12,14 @@ class User < ApplicationRecord
   validates :contact_no,{ presence: true, uniqueness: true, length: { is: 10 } }
   validates :password,{ format: { with: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*])/, message: "Password must contain at least 1 digit, 1 special char, 1 Capital Letter, 1 Small Letter and minimum 8 character"}, presence: true, allow_nil: true}
   validates_presence_of :first_name, :last_name
+  
+  after_create :send_mail
+
+
+  def send_mail
+    InvitationMailer.confirmation_instructions(self).deliver_now
+  end
+  
 
   attr_writer :login
 

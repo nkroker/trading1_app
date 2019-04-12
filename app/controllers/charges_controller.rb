@@ -1,7 +1,8 @@
 class ChargesController < ApplicationController
-  load_and_authorize_resource
   before_action :authenticate_user!
   skip_before_action :verify_authenticity_token  
+
+  before_filter(:only => [:new, :create]) { unauthorized! if cannot? :read, :charges }
 
   def new
   end

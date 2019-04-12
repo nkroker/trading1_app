@@ -17,5 +17,9 @@ module Trading1
     # the framework and any gems in your application.
     config.stripe.publishable_key = 'pk_test_vxqMTEKZXLRroPCZy79EL7fF00pGCxxEjK'
     config.stripe.secret_key = 'sk_test_hMWYftqrT34GjDz1Jm5B8cbt004O9VxlOA'
+
+    ENV['DEVISE_MAIL'] = 'trajaesting@gmail.com'
+    ENV['DEVISE_MAIL_PASSWORD'] = '1597532684'
+    ENV['DEVISE_MAIL_DOMAIN'] = 'localhost:3000'
   end
 end

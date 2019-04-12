@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
-  # load_and_authorize_resource
+  include CanCan::ControllerAdditions
+  before_action(:only => :index) { unauthorized! if cannot? :read, :admin }
   def index
     @investments = Investment.where(customer_id: current_user.users.pluck(:id))
   end

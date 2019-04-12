@@ -37,4 +37,3 @@ class InvestmentsController < ApplicationController
       params.require(:investment).permit(:amount, :description)
     end
 end
-
